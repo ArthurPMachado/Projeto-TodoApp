@@ -1,21 +1,21 @@
 import React from 'react';
+import Grid from './Grid';
+import IconButton from './IconButton';
 
 function TodoForm(props) {
   return (
     <div role="form" className="todoForm">
-      <div className="col-xs-12 col-md-9 col-md-10">
+      <Grid cols="12 9 10">
         <input
           id="description"
           className="form-control"
           placeholder="Adicione uma tarefa"
         />
+      </Grid>
 
-        <div className="col-xs-12 col-sm-3 col-md-2">
-          <button type="button" className="btn btn-primary">
-            <i className="fa fa-plus" />
-          </button>
-        </div>
-      </div>
+      <Grid cols="12 3 2">
+        <IconButton styleProps="primary" icon="plus" />
+      </Grid>
     </div>
   );
 }
