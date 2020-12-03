@@ -1,6 +1,5 @@
 import React from 'react';
-import Todo from './pages/Todo';
-import About from './pages/About';
+import Routes from './routes';
 import Menu from './components/Menu';
 
 // Import bootstrap and font-awesome
@@ -11,8 +10,7 @@ function App() {
   return (
     <div className="container">
       <Menu />
-      <Todo />
-      <About />
+      <Routes />
     </div>
   );
 }
