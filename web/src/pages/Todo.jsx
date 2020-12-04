@@ -40,6 +40,18 @@ function Todo() {
     });
   }
 
+  function handleMarkAsDone(todo) {
+    api.put(`${todo._id}`, { ...todo, done: true }).then((response) => {
+      handleRefresh();
+    });
+  }
+
+  function handleMarkAsPending(todo) {
+    api.put(`${todo._id}`, { ...todo, done: false }).then((response) => {
+      handleRefresh();
+    });
+  }
+
   return (
     <div>
       <PageHeader name="Tarefas" small="Cadastro" />
@@ -48,7 +60,12 @@ function Todo() {
         description={description}
         handleChange={handleChange}
       />
-      <TodoList list={list} handleRemove={handleRemove} />
+      <TodoList
+        list={list}
+        handleRemove={handleRemove}
+        handleMarkAsDone={handleMarkAsDone}
+        handleMarkAsPending={handleMarkAsPending}
+      />
     </div>
   );
 }
