@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import api from '../services/api';
+
 import PageHeader from '../components/PageHeader';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
@@ -12,7 +14,9 @@ function Todo() {
   }
 
   function handleAddTask() {
-
+    api.post('', { description }).then((response) => {
+      console.log('Funcionou');
+    });
   }
 
   return (
