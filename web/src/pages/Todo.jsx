@@ -17,11 +17,16 @@ function Todo() {
     });
   }, []);
 
-  function handleRefresh() {
-    api.get('?sort=-createdAt').then((response) => {
-      setDescription('');
+  function handleRefresh(descriptionParam) {
+    const search = descriptionParam ? `&description_regex=/${descriptionParam}` : '';
+
+    api.get(`?sort=-createdAt${search}`).then((response) => {
       setList(response.data);
     });
+  }
+
+  function handleSearch() {
+    handleRefresh(description);
   }
 
   function handleChange(event) {
@@ -36,19 +41,19 @@ function Todo() {
 
   function handleRemove(todo) {
     api.delete(`${todo._id}`).then((response) => {
-      handleRefresh();
+      handleRefresh(description);
     });
   }
 
   function handleMarkAsDone(todo) {
     api.put(`${todo._id}`, { ...todo, done: true }).then((response) => {
-      handleRefresh();
+      handleRefresh(description);
     });
   }
 
   function handleMarkAsPending(todo) {
     api.put(`${todo._id}`, { ...todo, done: false }).then((response) => {
-      handleRefresh();
+      handleRefresh(description);
     });
   }
 
@@ -59,6 +64,7 @@ function Todo() {
         handleAddTask={handleAddTask}
         description={description}
         handleChange={handleChange}
+        handleSearch={handleSearch}
       />
       <TodoList
         list={list}

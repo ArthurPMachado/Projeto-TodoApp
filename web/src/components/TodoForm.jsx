@@ -3,7 +3,9 @@ import Grid from './Grid';
 import IconButton from './IconButton';
 
 function TodoForm(props) {
-  const { handleAddTask, description, handleChange } = props;
+  const {
+    handleAddTask, description, handleChange, handleSearch,
+  } = props;
 
   return (
     <div role="form" className="todoForm">
@@ -22,6 +24,11 @@ function TodoForm(props) {
           styleProps="primary"
           icon="plus"
           onClick={handleAddTask}
+        />
+        <IconButton
+          styleProps="info"
+          icon="search"
+          onClick={handleSearch}
         />
       </Grid>
     </div>
